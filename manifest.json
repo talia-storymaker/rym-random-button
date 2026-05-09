@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "RYM Random Button",
+  "description": "Add Random link to RYM site navigation",
+  "version": "1.0.0",
+  "icons": {
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  },
+  "action": {
+    "default_title": "RYM Random Button",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/icon48.svg"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://rateyourmusic.com/*", "https://rym.fm/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": ["storage"]
+}
