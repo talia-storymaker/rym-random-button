@@ -1,8 +1,7 @@
-let beTopNavLink = true;
+let beTopNavLink = false;
 let beAfterSearchLink = true;
 
 function applyChanges() {
-  // clear existing injected elements if needed
   document.querySelectorAll(".rym-random-button-extension").forEach((el) => el.remove());
 
   const randomLink = document.createElement("a");
@@ -19,13 +18,16 @@ function applyChanges() {
   if (beAfterSearchLink) {
     const clone = randomLink.cloneNode(true);
     clone.textContent = "!?";
-    clone.classList.add("rym-random-button-extension");
-    document.querySelector(".header_search")?.appendChild(clone);
+    clone.className = "rym-random-button-extension";
+    clone.style.float = "left";
+    clone.style.padding = "0 16px";
+    document.querySelector(".header_profile_logged_in")?.prepend(clone);
+    // document.querySelector(".header_profile_logged_out")?.prepend(clone);
   }
 }
 
 chrome.storage.sync.get(["beTopNavLink", "beAfterSearchLink"], (opts) => {
-  beTopNavLink = opts.beTopNavLink ?? true;
+  beTopNavLink = opts.beTopNavLink ?? false;
   beAfterSearchLink = opts.beAfterSearchLink ?? true;
   applyChanges();
 });
